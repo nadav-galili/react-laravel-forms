@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
 
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <Link className="navbar-brand" to="/">
             React-Laravel App
           </Link>

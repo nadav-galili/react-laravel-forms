@@ -7,9 +7,9 @@
 }
 
 button {
-  font-size: 5px;
+  font-size: 12px !important;
 }
 
-.container {
-  background-color: aqua;
+#submit {
+  font-size: 12px !important;
 }
