@@ -1,27 +1,30 @@
-
-import './App.css';
-import React from 'react';
-import Navbar from './components/navbar';
+import "./App.css";
+import React from "react";
+import Navbar from "./components/navbar";
 import DataTable from "./components/form-list/dataTable";
-import Header from './components/common/header';
-import main from "./sass/main.scss";
+import Wizard from "./components/form-builder/wizard";
+import { Switch, Route } from "react-router-dom";
 
-const style={
-  minHeight:900
-}
+
+const style = {
+  minHeight: 900,
+};
 
 function App() {
   return (
     <React.Fragment>
-     <header>
-     <Navbar/>
-     </header>
-     <main style={style} >
-      <section>
-        <DataTable/>
-      </section>
-     </main>
-     </React.Fragment>
+      <header>
+        <Navbar />
+      </header>
+      <main style={style}>
+        <section>
+          <Switch>
+            <Route path="/form-builder" component={Wizard}/> 
+          <Route path="/" exact component={DataTable} />
+          </Switch>
+        </section>
+      </main>
+    </React.Fragment>
   );
 }
 

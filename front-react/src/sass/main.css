@@ -1,3 +1,15 @@
 .table {
   max-width: 700px;
 }
+
+.error {
+  color: red;
+}
+
+button {
+  font-size: 5px;
+}
+
+.container {
+  background-color: aqua;
+}
