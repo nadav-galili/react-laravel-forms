@@ -103,7 +103,7 @@ const Wizard = () => {
   return (
     <div className="container">
       <Header titleText="Form Builder" />
-      <h4>Question number {questionNum}</h4>
+      <h4>Question number <span className="text-primary">{questionNum}</span></h4>
       <div className="form-group col-4">
         <Label name="fieldLabel" label="Field Label" />
         <MyInput
