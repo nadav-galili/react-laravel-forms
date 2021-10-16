@@ -11,7 +11,7 @@ const Wizard = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({ mode: "all" });
+  } = useForm({ mode: "onSubmit" });
   const onSubmit = (data) => console.log(data);
 
   function addQuestion() {
@@ -80,7 +80,7 @@ const Wizard = () => {
         <input {...register("formName", { required: true, minLength:2 })} />
         {errors.inputName && <span className="error">This field is required & min 2 chars</span>} */}
 
-          {/* <input id="submit" type="submit" className="btn btn-primary  mt-3 col-8 col-lg-5" value="Finished adding fields"/> */}
+          <input id="submit" type="submit" className="btn btn-primary  mt-3 col-8 col-lg-5" value="Finished adding fields"/>
         </form>
       </div>
 
