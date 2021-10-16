@@ -16,7 +16,7 @@ class Wizard extends Form {
     question:{
       questionNum:this.props.questionNum, data:{ fieldLabel: "", inputName: "", inputType: "text" }
     },
-    questionNum:this.props.questionNum
+
   };
 
   constructor(props) {
@@ -30,19 +30,26 @@ class Wizard extends Form {
   };
 
   selectChange(e) {
-    const data = { ...this.state.data };
-    data.inputType = e.target.value;
-    // this.setState({ data });
-    this.setState({data})
+    // const data = { ...this.state.data };
+    // data.inputType = e.target.value;
+    // this.setState({data})
+
+    const question={...this.state.question};
+    question.data.inputType=e.target.value;
+    this.setState({question});
   }
+
+
+ 
+
+
+
+
 
   doSubmit = async () => {
     const data = { ...this.state.data };
-    const questionNum=this.props.questionNum
-   
-
     try {
-      console.log("myasdsdsd", data, questionNum);
+      console.log("myasdsdsd", data);
       //   await http.post(`${apiUrl}/users`, data);
       //   await userService.login(data.email, data.password);
       //   window.location = "/create-card";
@@ -85,7 +92,8 @@ class Wizard extends Form {
                 ))}
               </select>
               </div>
-           
+           <button className="btn btn-danger" onClick={this.nextQuestion}>ss</button>
+
               {this.renderButton("Submit Form")}
             </form>
           </div>

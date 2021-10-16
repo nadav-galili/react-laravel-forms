@@ -7,6 +7,7 @@ const FormBuilder = () => {
   const [questionNum, setQuestionNum] = useState(1);
   const addq = () => {
     setQuestionNum(questionNum + 1);
+
   };
   const back = () => {
     setQuestionNum(questionNum > 1 ? questionNum - 1 : questionNum);
@@ -27,7 +28,10 @@ const FormBuilder = () => {
           Add Question
         </button>
       </div>
-      <Wizard questionNum={questionNum} />
+      <Wizard
+       questionNum={questionNum}
+       addq={()=>addq()}
+       />
     </div>
   );
 };

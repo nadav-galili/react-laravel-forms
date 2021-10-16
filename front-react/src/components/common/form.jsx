@@ -7,6 +7,9 @@ class Form extends Component {
   state = {
     data: {},
     errors: {},
+    question:{
+      data:{}
+    }
   };
 
   validate = () => {
@@ -44,6 +47,15 @@ class Form extends Component {
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data, errors });
+
+    const question={...this.state.question};
+    question.data=data;
+    // this.setState({question})
+
+    
+    question.questionNum=this.props.questionNum
+
+   this.setState({question})
   };
 
   renderButton(label) {
