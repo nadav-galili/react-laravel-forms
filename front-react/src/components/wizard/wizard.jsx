@@ -8,6 +8,7 @@ import Form from "../common/form";
 // import userService from "../services/userService";
 // import { Redirect } from "react-router-dom";
 
+
 class Wizard extends Form {
   state = {
     data: { fieldLabel: "", inputName: "", inputType: "text" },
@@ -63,6 +64,7 @@ class Wizard extends Form {
         <div className="row">
           <div className="col-12">
             <p>Question Number {this.props.questionNum}</p>
+            
             {/* <p>Question number {props.questionNum}</p> */}
             <p>Please select inputs for the fields</p>
           </div>
