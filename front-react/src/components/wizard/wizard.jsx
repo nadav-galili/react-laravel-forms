@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../common/header";
+
 import Joi from "joi-browser";
 import Form from "../common/form";
 // import http from "../services/httpService";
@@ -13,6 +13,9 @@ class Wizard extends Form {
   state = {
     data: { fieldLabel: "", inputName: "", inputType: "text" },
     errors: {},
+    question:{
+      questionNum:this.props.questionNum, data:{ fieldLabel: "", inputName: "", inputType: "text" }
+    },
     questionNum:this.props.questionNum
   };
 
@@ -29,12 +32,13 @@ class Wizard extends Form {
   selectChange(e) {
     const data = { ...this.state.data };
     data.inputType = e.target.value;
-    this.setState({ data });
+    // this.setState({ data });
+    this.setState({data})
   }
 
   doSubmit = async () => {
     const data = { ...this.state.data };
-    const questionNum={...this.state.questionNum}
+    const questionNum=this.props.questionNum
    
 
     try {
@@ -60,15 +64,6 @@ class Wizard extends Form {
 
     return (
       <div className="container">
-        <Header titleText="Form Builder" />
-        <div className="row">
-          <div className="col-12">
-            <p>Question Number {this.props.questionNum}</p>
-            
-            {/* <p>Question number {props.questionNum}</p> */}
-            <p>Please select inputs for the fields</p>
-          </div>
-        </div>
         <div className="row">
           <div className="col-lg-6">
             <form onSubmit={this.handleSubmit} method="POST" autoComplete="off">
