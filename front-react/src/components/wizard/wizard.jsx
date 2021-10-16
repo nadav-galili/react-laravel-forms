@@ -14,7 +14,7 @@ class Wizard extends Form {
     data: { fieldLabel: "", inputName: "", inputType: "text" },
     errors: {},
     question:{
-      questionNum:this.props.questionNum, data:{ fieldLabel: "", inputName: "", inputType: "text" }
+      questionNum:1, data:{ fieldLabel: "", inputName: "", inputType: "text" }
     },
 
   };
@@ -22,6 +22,7 @@ class Wizard extends Form {
   constructor(props) {
     super(props);
     this.selectChange = this.selectChange.bind(this);
+    this.nextQuestion=this.nextQuestion.bind(this);
   }
   schema = {
     fieldLabel: Joi.string().required().min(2).label("fieldLabel"),
@@ -30,17 +31,20 @@ class Wizard extends Form {
   };
 
   selectChange(e) {
-    // const data = { ...this.state.data };
-    // data.inputType = e.target.value;
-    // this.setState({data})
-
     const question={...this.state.question};
+    console.log(question);
     question.data.inputType=e.target.value;
     this.setState({question});
   }
 
 
- 
+ nextQuestion(){
+  const question={...this.state.question};
+  question.questionNum=  question.questionNum+1;
+  question.data.fieldLabel="";
+  question.data.inputName="";
+   this.setState({question})
+ }
 
 
 
@@ -92,7 +96,8 @@ class Wizard extends Form {
                 ))}
               </select>
               </div>
-           <button className="btn btn-danger" onClick={this.nextQuestion}>ss</button>
+           <button className="btn btn-danger" onClick={this.nextQuestion}>next</button>
+           {/* <button className="btn btn-danger" onClick={this.nextQuestion}>prev</button> */}
 
               {this.renderButton("Submit Form")}
             </form>
