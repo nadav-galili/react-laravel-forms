@@ -4,6 +4,7 @@ import Label from "../common/label";
 import MyInput from "../common/myInput";
 import Select from "../common/select";
 
+// array of input types
 const types = [
   { label: "text", value: "text" },
   { label: "date", value: "date" },
@@ -22,6 +23,7 @@ const [data, setData] = useState({
     inputName:"",
 })
 
+// handle changed inputs on field label & input name
 function handleChange(event){
     const { name, value } = event.target;
     setData((prevState) => {
@@ -32,7 +34,19 @@ function handleChange(event){
     });
  }
 
+//  add 1 to question number and reset values for fields
  function nextQuestion(){
+    // create a new array to insert the state data to
+    let questions=[];
+    // create an object from the user inputs
+    // and push it to the array
+    questions.push({"question number":questionNum, 
+    "fieldLabel":data.fieldLabel,
+    "inputName":data.inputName,
+    "inputType":inputType
+})
+    console.log(questions);
+     localStorage.setItem('questions', JSON.stringify(questions))
     setQuestionNum(questionNum + 1);
     data.fieldLabel="";
     data.inputName="";
