@@ -16,11 +16,14 @@ const types = [
 
 const Wizard = () => {
   const [questionNum, setQuestionNum] = useState(1);
-  const [inputType, SetInputType] = useState(types[0].value);
+  const [inputType, setInputType] = useState(types[0].value);
   const [data, setData] = useState({
     fieldLabel: "",
     inputName: "",
   });
+
+  const [formData, setFormData] = useState([{}]);
+
   const [errors, setErrors] = useState({});
 
   //create schema to validate user input
@@ -30,6 +33,7 @@ const Wizard = () => {
     inputType: Joi.string().label("inputType"),
   };
 
+  //validate the user input using Joi
   const validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
     schema = { [name]: schema[name] };
@@ -37,12 +41,14 @@ const Wizard = () => {
     return error ? error.details[0].message : null;
   };
 
-  
-  const validate = () => {
+  //validate the "next question" button..
+  //while user input is not validate , the button is disabled
+  let validate = () => {
     const options = { abortEarly: false };
     const { error } = Joi.validate(data, schema, options);
     if (!error) return null;
 
+    //if there are errors , display them to the user
     const errors = {};
     for (let item of error.details) errors[item.path[0]] = item.message;
     return errors;
@@ -52,14 +58,12 @@ const Wizard = () => {
   function handleChange(event) {
     const { name, value } = event.target;
     const errorMessage = validateProperty(event.target);
-    console.log(errorMessage, "ff");
-    if (errorMessage){
-        errors[name] = errorMessage;
-        setErrors(errors)
-        console.log("t",errors);
-    }
-     else delete errors[name];
-    
+
+    if (errorMessage) {
+      errors[name] = errorMessage;
+      setErrors(errors);
+    } else delete errors[name];
+
     setData((prevState) => {
       return {
         ...prevState,
@@ -68,42 +72,36 @@ const Wizard = () => {
     });
   }
 
-  // create a new array to insert the state data to
-  let questions = [];
+
 
   function nextQuestion() {
-    let existingQuestions = JSON.parse(localStorage.getItem("Questions"));
-    // create an object from the user inputs
+      //get user data from the form
     let questionData = {
-      "question number": questionNum,
+      questionNumber: questionNum,
       fieldLabel: data.fieldLabel,
       inputName: data.inputName,
       inputType: inputType,
     };
+    //add the user data to array of objects in the state
+    setFormData((questions) => [...questions, questionData]);
 
-    if (existingQuestions == null) {
-      //if theres no questions in local storage  push the object to the array
-      questions.push(questionData);
-      localStorage.setItem("Questions", JSON.stringify(questions));
-    } else {
-      //if there were previous questions,
-      //get the array thaat holds the questions object and push the new
-      //question into it
-      existingQuestions.push(questionData);
-      localStorage.setItem("Questions", JSON.stringify(existingQuestions));
-    }
-
-    //  add 1 to question number and reset values for fields
-    setQuestionNum(questionNum + 1);
+    //reset fields
     data.fieldLabel = "";
     data.inputName = "";
-    SetInputType(types[0].value);
+    setData(data);
+    setInputType(types[0].value);
+
+    //increment q number
+    setQuestionNum(questionNum + 1);
+   
   }
- 
+
   return (
     <div className="container">
       <Header titleText="Form Builder" />
-      <h4>Question number <span className="text-primary">{questionNum}</span></h4>
+      <h4>
+        Question number <span className="text-primary">{questionNum}</span>
+      </h4>
       <div className="form-group col-4">
         <Label name="fieldLabel" label="Field Label" />
         <MyInput
@@ -111,7 +109,7 @@ const Wizard = () => {
           type="text"
           value={data.fieldLabel}
           onChange={handleChange}
-           error={errors.fieldLabel}
+          error={errors.fieldLabel}
         />
       </div>
       <div className="form-group col-4">
@@ -129,18 +127,9 @@ const Wizard = () => {
         label="Input Type"
         types={types}
         value={inputType}
-        onChange={(e) => SetInputType(e.target.value)}
+        onChange={(e) => setInputType(e.target.value)}
       />
       <div className="button-group justify-content-between d-flex col-4 mt-3">
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() =>
-            setQuestionNum(questionNum > 1 ? questionNum - 1 : questionNum)
-          }
-        >
-          Prev Question
-        </button>
         <button
           type="button"
           className="btn btn-primary"
