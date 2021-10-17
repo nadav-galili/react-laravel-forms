@@ -7,14 +7,14 @@ const DataTable = () => {
         <div className="container mt-4">
           <Header titleText="Forms List Page"/>
             <table className="table">
-              <th >
+              <thead >
                 <tr className="d-flex ">
                   <td className="flex-fill">Form Id </td>
                   <td className="flex-fill" >Form Name</td>
                   <td className="flex-fill"># Submissions</td>
                   <td className="flex-fill">Submit Page</td>
                 </tr>
-              </th>
+              </thead>
               <tbody>
                 <tr className="d-flex ">
                   <td className="flex-fill">1</td>
