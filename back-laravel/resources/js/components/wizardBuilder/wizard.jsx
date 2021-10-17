@@ -123,6 +123,7 @@ const Wizard = () => {
         //remove first element because its empty
         formDetails.shift();
         formDetails.formName = formName;
+
       } else {
         alert("Please submit min 1 question on the form ");
       }
@@ -144,8 +145,8 @@ const Wizard = () => {
         />
       </div>
 
-      <h4>
-        Question number <span className="text-primary">{questionNum}</span>
+      <h4 >
+        Question number: <span className="text-primary">{questionNum}</span>
       </h4>
       <div className="form-group col-4">
         <Label name="fieldLabel" label="Field Label" />

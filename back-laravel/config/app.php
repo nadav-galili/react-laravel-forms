@@ -2,6 +2,10 @@
 
 return [
 
+    'providers' => [
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+    ],
+ 
     /*
     |--------------------------------------------------------------------------
     | Application Name

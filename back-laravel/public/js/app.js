@@ -2398,7 +2398,7 @@ var Select = function Select(_ref) {
       onChange = _ref.onChange,
       value = _ref.value;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "form-group",
+    className: "form-group col-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
       htmlFor: name,
       children: label
@@ -2840,7 +2840,7 @@ var Wizard = function Wizard() {
         onChange: getFormName
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h4", {
-      children: ["Question number ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+      children: ["Question number: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
         className: "text-primary",
         children: questionNum
       })]
