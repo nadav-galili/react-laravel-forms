@@ -4,6 +4,7 @@ import Header from "../common/header";
 import Label from "../common/label";
 import MyInput from "../common/myInput";
 import Select from "../common/select";
+import SubmitButton from "./submitButton";
 
 // array of input types
 const types = [
@@ -24,6 +25,7 @@ const Wizard = () => {
 
   const [formData, setFormData] = useState([{}]);
 
+  const [formName, setFormName] = useState({});
   const [errors, setErrors] = useState({});
 
   //create schema to validate user input
@@ -72,10 +74,8 @@ const Wizard = () => {
     });
   }
 
-
-
   function nextQuestion() {
-      //get user data from the form
+    //get user data from the form
     let questionData = {
       questionNumber: questionNum,
       fieldLabel: data.fieldLabel,
@@ -93,7 +93,43 @@ const Wizard = () => {
 
     //increment q number
     setQuestionNum(questionNum + 1);
-   
+  }
+
+  function getFormName(event) {
+    const { value } = event.target;
+    setFormName({ "Form Name": value });
+  }
+
+
+
+  function submitForm() {
+  //get user data from for the last question
+  let questionData = {
+    questionNumber: questionNum,
+    fieldLabel: data.fieldLabel,
+    inputName: data.inputName,
+    inputType: inputType,
+  };
+  const {fieldLabel}=questionData;
+  //check if user input is not empty
+  if(fieldLabel!==""){
+    setFormData((questions) => [...questions, questionData]);
+     let formDetails=formData;
+     //remove first element because its empty
+     formDetails.shift();
+     formDetails.formName=formName;
+     console.log(formDetails);
+  }
+  //add the user data to array of objects in the state
+ 
+
+    
+
+
+
+
+    // formDetails={...formDetails, lastQuestion}
+    // console.log(formDetails);
   }
 
   return (
@@ -138,6 +174,62 @@ const Wizard = () => {
         >
           Next Question
         </button>
+        {/* <SubmitButton/> */}
+        <button
+          type="button"
+          className="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          
+        >
+          Enter Form name
+        </button>
+      </div>
+
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <Label name="formName" label="Please Select Form Name" />
+              <MyInput
+                name="formName"
+                type="text"
+                className="col-4"
+                onChange={getFormName}
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={submitForm}
+              >
+                Submit Form
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
