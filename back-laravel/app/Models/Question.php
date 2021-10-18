@@ -6,12 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Form extends Model
+class Question extends Model
 {
     use HasFactory;
-    protected $fillable=['form_name','submitions' ];
-
-    public function questions(){
-        return $this->hasMany(Question::class);
-    }
+    
+    protected $fillable=['formId', 'question_number', 'input_type', 'input_name', 'field_label'];
 }
