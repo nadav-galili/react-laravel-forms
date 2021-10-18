@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//get all the forms
+Route::get('/forms', [FormController::class, 'forms']);
+//create a new form
+Route::post('/saveform', [FormController::class, 'saveform']);
