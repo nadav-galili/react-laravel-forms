@@ -7,6 +7,7 @@ import Select from "../common/select";
 // import axios from 'axios';
 import httpService from "../../../services/httpService";
 import formService from "../../../services/formService";
+import questionService from "../../../services/formService";
 
 // array of input types
 const types = [
@@ -128,18 +129,13 @@ const Wizard = () => {
                 formDetails.shift();
                 // formDetails.formName = formName;
                 console.log(formDetails);
-                console.log(formName);
-                formService.saveForm(formName)
-                //  formDetails.map((form)=>(
-                //    axios.post('/savequestions',form)
-                //  .then(response=>{
-                //   history.pushState('/')
-
-                // })
-                //  .catch(error=>{
-                //    setErrors(error.response.data.errors);
-                //  })
-                //  ))
+               
+                formService.saveForm(formName);
+                formDetails.map((question)=>(
+                  // console.log(question, "q")
+                   questionService.saveQuestion(question)
+                ))
+     
             } else {
                 alert("Please submit min 1 question on the form ");
             }

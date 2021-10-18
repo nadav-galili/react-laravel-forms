@@ -2724,6 +2724,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // import axios from 'axios';
 
 
+
  // array of input types
 
 
@@ -2911,16 +2912,12 @@ var Wizard = function Wizard() {
         formDetails.shift(); // formDetails.formName = formName;
 
         console.log(formDetails);
-        console.log(formName);
-        _services_formService__WEBPACK_IMPORTED_MODULE_7__["default"].saveForm(formName); //  formDetails.map((form)=>(
-        //    axios.post('/savequestions',form)
-        //  .then(response=>{
-        //   history.pushState('/')
-        // })
-        //  .catch(error=>{
-        //    setErrors(error.response.data.errors);
-        //  })
-        //  ))
+        _services_formService__WEBPACK_IMPORTED_MODULE_7__["default"].saveForm(formName);
+        formDetails.map(function (question) {
+          return (// console.log(question, "q")
+            _services_formService__WEBPACK_IMPORTED_MODULE_7__["default"].saveQuestion(question)
+          );
+        });
       } else {
         alert("Please submit min 1 question on the form ");
       }
@@ -3018,9 +3015,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _httpService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./httpService */ "./resources/services/httpService.jsx");
+ //create a service to save a new form name
 
 function saveForm(formName) {
-  console.log("3333", formName);
   return _httpService__WEBPACK_IMPORTED_MODULE_0__["default"].post('/saveform', formName);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

@@ -19,7 +19,9 @@ class CreateQuestionsTable extends Migration
             $table->string('inputType');
             $table->string('inputName');
             $table->string('fieldLabel');
+            $table->bigInteger('form_id')->unsigned();
             $table->timestamps();
+            $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
         });
     }
 

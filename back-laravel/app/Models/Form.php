@@ -11,6 +11,8 @@ class Form extends Model
     use HasFactory;
     protected $fillable=['form_name','submitions' ];
 
+    protected $table='forms';
+    
     public function questions(){
         return $this->hasMany(Question::class);
     }

@@ -9,6 +9,12 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
+    protected $table="questions";
     
     protected $fillable=['formId', 'questionNumber', 'inputType', 'inputName', 'fieldLabel'];
+
+    public function form(){
+        return $this->belongsTo(Form::class);
+    }
+
 }

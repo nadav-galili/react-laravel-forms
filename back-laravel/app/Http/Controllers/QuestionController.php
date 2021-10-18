@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Question;
+use App\Models\Form;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -18,14 +19,17 @@ class QuestionController extends Controller
         return $questions->toJson;
     }
 
-    public function savequestions(Request $request){
+    public function savequestions(Request $request, $id){
+        $form=Form::find($id);
         $question=new Question();
         $question->questionNumber=$request->input('questionNumber');
         $question->fieldLabel=$request->input('fieldLabel');
         $question->inputName=$request->input('inputName');
         $question->inputType=$request->input('inputType');
-        $question->save();
-        return $question->toJson();
-        //  dd($request->all());
+        $form->questions()->save($question);
+        return $form;
+        // $question->save();
+        // return $question->toJson();
+       
     }
 }
