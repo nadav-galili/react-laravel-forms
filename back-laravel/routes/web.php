@@ -21,3 +21,11 @@ Route::get('/', function () {
 Route::get('/forms', [FormController::class, 'forms']);
 //create a new form
 Route::post('/saveform', [FormController::class, 'saveform']);
+//get form by id
+Route::get('/forms/{id}', [FormController::class, 'formById']);
+
+
+//create a new questions instance
+Route::post('savequestions', [QuestionController::class, 'savequestions']);
+//get questions by formid
+Route::get('/questionsByForm/{formId}',[QuestionController::class, 'questionsByForm']);

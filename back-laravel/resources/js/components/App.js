@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
   import Wizard from "./wizardBuilder/wizard";
 import DataTable from "./form-list/dataTable";
+import FormsList from "./formslist";
 
 const style = {
     minHeight: 900,
@@ -20,7 +21,8 @@ function App() {
                     <section>
                         <Switch>
                             <Route path="/form-builder" component={Wizard} />
-                            <Route path="/" exact component={DataTable} />
+                            {/* <Route path="/" exact component={DataTable} /> */}
+                            <Route path="/" exact component={FormsList} />
                         </Switch>
                     </section>
                 </main>
