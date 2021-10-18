@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "joi-browser": "^13.4.0",
-        "react-router-dom": "^5.3.0"
+        "react-router-dom": "^5.3.0",
+        "react-toastify": "^8.0.3",
+        "sweetalert2": "^11.1.9"
     }
 }

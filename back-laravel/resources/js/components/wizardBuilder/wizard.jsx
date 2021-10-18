@@ -4,10 +4,9 @@ import Header from "../common/header";
 import Label from "../common/label";
 import MyInput from "../common/myInput";
 import Select from "../common/select";
-// import axios from 'axios';
-import httpService from "../../../services/httpService";
-import formService from "../../../services/formService";
-import questionService from "../../../services/formService";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 // array of input types
 const types = [
@@ -30,6 +29,7 @@ const Wizard = () => {
     const [formName, setFormName] = useState({});
     const [errors, setErrors] = useState({});
     const [validateSubmit, setValidateSubmit] = useState(false);
+    const [formId, setFormId] = useState("");
 
     //create schema to validate user input
     let schema = {
@@ -105,11 +105,17 @@ const Wizard = () => {
         setFormName({ form_name: value });
     }
 
-    function submitForm(event) {
+    async function submitForm(event) {
         event.preventDefault();
         //check if the user entered form name min 2 chars
-        if (!formName.FormName || formName.FormName.length < 2)
-            alert("Please enter form name min 2 chars");
+        if (!formName.form_name || formName.form_name.length < 2)
+            // alert("Please enter form name min 2 chars");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please enter form name min 2 chars",
+                footer: "",
+            });
         //get user data for the last question
         let questionData = {
             questionNumber: questionNum,
@@ -127,20 +133,41 @@ const Wizard = () => {
             if (formDetails.length > 1 && validateSubmit) {
                 //remove first element because its empty
                 formDetails.shift();
-                // formDetails.formName = formName;
-                console.log(formDetails);
-               
-                formService.saveForm(formName);
-                formDetails.map((question)=>(
-                  // console.log(question, "q")
-                   questionService.saveQuestion(question)
-                ))
-     
+
+                //save the form name in the DB to get the form Id
+                axios.post("/saveform", formName).then((response) => {
+                    //map through the form data and save in the DB with the form id as parameter
+                    formDetails.map((q) =>
+                        axios.post(`/savequestions/${response.data}`, q)
+                    );
+                });
+                //display toastify banner
+                toast.success("🦄 The Form Was Submitted Successfully!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                //navigate to home directory
+                window.location = "/";
             } else {
-                alert("Please submit min 1 question on the form ");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please submit min 1 question on the form ",
+                    footer: "",
+                });
             }
         } else {
-            alert("Please submit min 1 question on the form ");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please submit min 1 question on the form ",
+                footer: "",
+            });
         }
     }
 

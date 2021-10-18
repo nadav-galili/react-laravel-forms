@@ -23,7 +23,7 @@ Route::get('/forms', [FormController::class, 'forms']);
 Route::post('/saveform', [FormController::class, 'saveform']);
 //get form by id
 Route::get('/forms/{id}', [FormController::class, 'formById']);
-Route::post('/createform',[FormController::class, 'form']);
+
 
 //create a new questions instance with form id as parameter
 Route::post('/savequestions/{id}', [QuestionController::class, 'savequestions']);

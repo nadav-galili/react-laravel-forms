@@ -17,13 +17,11 @@ class FormController extends Controller
         $form=new Form();
         $form->form_name=$request->input('form_name');
         $form->save();
-        return $form;
-  
-        
+        return $form->_id;
     }
     
     public function form(Request $request){
-//    dd($request);
+
 return $request;
     }
 }
