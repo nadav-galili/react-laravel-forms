@@ -10,5 +10,5 @@ class Question extends Model
 {
     use HasFactory;
     
-    protected $fillable=['formId', 'question_number', 'input_type', 'input_name', 'field_label'];
+    protected $fillable=['formId', 'questionNumber', 'inputType', 'inputName', 'fieldLabel'];
 }

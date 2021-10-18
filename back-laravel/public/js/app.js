@@ -2685,7 +2685,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/label */ "./resources/js/components/common/label.jsx");
 /* harmony import */ var _common_myInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/myInput */ "./resources/js/components/common/myInput.jsx");
 /* harmony import */ var _common_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/select */ "./resources/js/components/common/select.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2713,6 +2715,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2879,8 +2882,9 @@ var Wizard = function Wizard() {
     });
   }
 
-  function submitForm() {
-    //check if the user entered form name min 2 chars
+  function submitForm(event) {
+    event.preventDefault(); //check if the user entered form name min 2 chars
+
     if (!formName.FormName || formName.FormName.length < 2) alert("Please enter form name min 2 chars"); //get user data for the last question
 
     var questionData = {
@@ -2902,8 +2906,14 @@ var Wizard = function Wizard() {
 
       if (formDetails.length > 1 && validateSubmit) {
         //remove first element because its empty
-        formDetails.shift();
-        formDetails.formName = formName;
+        formDetails.shift(); // formDetails.formName = formName;
+
+        console.log(formDetails[0]);
+        axios__WEBPACK_IMPORTED_MODULE_6___default().post('/savequestions', formDetails[0]).then(function (response) {
+          history.pushState('/');
+        })["catch"](function (error) {
+          setErrors(error.response.data.errors);
+        });
       } else {
         alert("Please submit min 1 question on the form ");
       }
@@ -2912,51 +2922,51 @@ var Wizard = function Wizard() {
     }
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
       titleText: "Form Builder"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "formName col-lg-4 mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "formName",
         label: " Form Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "formName",
         type: "text",
         className: "col-4",
         onChange: getFormName
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h4", {
-      children: ["Question number: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+      children: ["Question number: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
         className: "text-primary",
         children: questionNum
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "form-group col-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "fieldLabel",
         label: "Field Label"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "fieldLabel",
         type: "text",
         value: data.fieldLabel,
         onChange: handleChange,
         error: errors.fieldLabel
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "form-group col-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "inputName",
         label: "Input Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "inputName",
         type: "text",
         value: data.inputName,
         onChange: handleChange,
         error: errors.inputName
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
       name: "inputType",
       label: "Input Type",
       types: types,
@@ -2964,9 +2974,9 @@ var Wizard = function Wizard() {
       onChange: function onChange(e) {
         return setInputType(e.target.value);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "button-group justify-content-between d-flex col-4 mt-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
         type: "button",
         className: "btn btn-primary",
         onClick: function onClick() {
@@ -2974,7 +2984,7 @@ var Wizard = function Wizard() {
         },
         disabled: validate(),
         children: "Submit question"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
         type: "button",
         className: "btn btn-success",
         onClick: submitForm,

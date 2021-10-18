@@ -15,11 +15,10 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question_number');
-            $table->string('input_type');
-            $table->string('input_name');
-            $table->string('field_label');
-            $table->unsignedInteger('form_id');  
+            $table->integer('questionNumber');
+            $table->string('inputType');
+            $table->string('inputName');
+            $table->string('fieldLabel');
             $table->timestamps();
         });
     }

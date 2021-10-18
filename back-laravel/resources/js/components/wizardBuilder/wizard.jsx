@@ -4,6 +4,7 @@ import Header from "../common/header";
 import Label from "../common/label";
 import MyInput from "../common/myInput";
 import Select from "../common/select";
+import axios from 'axios';
 
 // array of input types
 const types = [
@@ -101,7 +102,8 @@ const Wizard = () => {
     setFormName({ FormName: value });
   }
 
-  function submitForm() {
+  function submitForm(event) {
+    event.preventDefault();
     //check if the user entered form name min 2 chars
     if (!formName.FormName || formName.FormName.length < 2)
       alert("Please enter form name min 2 chars");
@@ -122,7 +124,16 @@ const Wizard = () => {
       if (formDetails.length > 1 && validateSubmit) {
         //remove first element because its empty
         formDetails.shift();
-        formDetails.formName = formName;
+        // formDetails.formName = formName;
+        console.log( formDetails[0]);
+        axios.post('/savequestions',formDetails[0])
+        .then(response=>{
+          history.pushState('/')
+          
+        })
+        .catch(error=>{
+          setErrors(error.response.data.errors);
+        })
 
       } else {
         alert("Please submit min 1 question on the form ");
