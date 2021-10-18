@@ -13,13 +13,11 @@ class FormController extends Controller
     }
 
     public function saveform(Request $request){
-        // $form=new Form();
-        // $form->form_name=$request->input('form_name');
-        // $form->save();
-        // return $form->toJson();
-        // dd($request->getAcceptableContentTypes(););
-     
-        return $request;
+        $form=new Form();
+        $form->form_name=$request->input('form_name');
+        $form->save();
+        return $form;
+  
         
     }
     

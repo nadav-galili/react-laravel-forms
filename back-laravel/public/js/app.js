@@ -2685,9 +2685,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/label */ "./resources/js/components/common/label.jsx");
 /* harmony import */ var _common_myInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/myInput */ "./resources/js/components/common/myInput.jsx");
 /* harmony import */ var _common_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/select */ "./resources/js/components/common/select.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _services_httpService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/httpService */ "./resources/services/httpService.jsx");
+/* harmony import */ var _services_formService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../services/formService */ "./resources/services/formService.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2720,6 +2720,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+ // import axios from 'axios';
 
 
  // array of input types
@@ -2878,7 +2880,7 @@ var Wizard = function Wizard() {
   function getFormName(event) {
     var value = event.target.value;
     setFormName({
-      FormName: value
+      form_name: value
     });
   }
 
@@ -2908,12 +2910,17 @@ var Wizard = function Wizard() {
         //remove first element because its empty
         formDetails.shift(); // formDetails.formName = formName;
 
-        console.log(formDetails[0]);
-        axios__WEBPACK_IMPORTED_MODULE_6___default().post('/savequestions', formDetails[0]).then(function (response) {
-          history.pushState('/');
-        })["catch"](function (error) {
-          setErrors(error.response.data.errors);
-        });
+        console.log(formDetails);
+        console.log(formName);
+        _services_formService__WEBPACK_IMPORTED_MODULE_7__["default"].saveForm(formName); //  formDetails.map((form)=>(
+        //    axios.post('/savequestions',form)
+        //  .then(response=>{
+        //   history.pushState('/')
+        // })
+        //  .catch(error=>{
+        //    setErrors(error.response.data.errors);
+        //  })
+        //  ))
       } else {
         alert("Please submit min 1 question on the form ");
       }
@@ -2922,51 +2929,51 @@ var Wizard = function Wizard() {
     }
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
       titleText: "Form Builder"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "formName col-lg-4 mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "formName",
         label: " Form Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "formName",
         type: "text",
         className: "col-4",
         onChange: getFormName
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
-      children: ["Question number: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h4", {
+      children: ["Question number:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
         className: "text-primary",
         children: questionNum
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "form-group col-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "fieldLabel",
         label: "Field Label"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "fieldLabel",
         type: "text",
         value: data.fieldLabel,
         onChange: handleChange,
         error: errors.fieldLabel
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "form-group col-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_label__WEBPACK_IMPORTED_MODULE_3__["default"], {
         name: "inputName",
         label: "Input Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_myInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
         name: "inputName",
         type: "text",
         value: data.inputName,
         onChange: handleChange,
         error: errors.inputName
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_common_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
       name: "inputType",
       label: "Input Type",
       types: types,
@@ -2974,9 +2981,9 @@ var Wizard = function Wizard() {
       onChange: function onChange(e) {
         return setInputType(e.target.value);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "button-group justify-content-between d-flex col-4 mt-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
         type: "button",
         className: "btn btn-primary",
         onClick: function onClick() {
@@ -2984,7 +2991,7 @@ var Wizard = function Wizard() {
         },
         disabled: validate(),
         children: "Submit question"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
         type: "button",
         className: "btn btn-success",
         onClick: submitForm,
@@ -2995,6 +3002,54 @@ var Wizard = function Wizard() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Wizard);
+
+/***/ }),
+
+/***/ "./resources/services/formService.jsx":
+/*!********************************************!*\
+  !*** ./resources/services/formService.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "saveForm": () => (/* binding */ saveForm),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _httpService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./httpService */ "./resources/services/httpService.jsx");
+
+function saveForm(formName) {
+  console.log("3333", formName);
+  return _httpService__WEBPACK_IMPORTED_MODULE_0__["default"].post('/saveform', formName);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  saveForm: saveForm
+});
+
+/***/ }),
+
+/***/ "./resources/services/httpService.jsx":
+/*!********************************************!*\
+  !*** ./resources/services/httpService.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: (axios__WEBPACK_IMPORTED_MODULE_0___default().get),
+  post: (axios__WEBPACK_IMPORTED_MODULE_0___default().post),
+  put: (axios__WEBPACK_IMPORTED_MODULE_0___default().put),
+  patch: (axios__WEBPACK_IMPORTED_MODULE_0___default().patch),
+  "delete": (axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"])
+});
 
 /***/ }),
 
