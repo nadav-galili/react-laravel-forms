@@ -10,7 +10,7 @@ class FormController extends Controller
     //
     public function forms(){
         $forms=Form::All();
-        return $forms->toJson();
+        return $forms;
     }
 
     public function saveform(Request $request){
