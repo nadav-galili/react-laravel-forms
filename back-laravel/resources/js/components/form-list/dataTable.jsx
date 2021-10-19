@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../common/header";
 import formService from "../../../services/formService";
+import { Link } from "react-router-dom";
 
 const DataTable = () => {
     const [forms, setForms] = useState([]);
@@ -13,8 +14,6 @@ const DataTable = () => {
         getForms();
     }, []);
 
-    console.log(typeof forms);
-    console.log(forms, "ll");
     return (
         <div className="container mt-4">
             <Header titleText="Forms List Page" />
@@ -27,24 +26,24 @@ const DataTable = () => {
                         <td className="flex-fill">Submit Page</td>
                     </tr>
                 </thead>
-                
+
                 <tbody>
-                 {/* Display all the forms that were submitted */}
-                        {forms.map((form) => (
-                       
-                                 <tr className="d-flex " key={form._id}>
-                                <td className="flex-fill">{form._id}</td>
-                                <td className="flex-fill">{form.form_name}</td>
-                                <td className="flex-fill">15</td>
-                                <td>
-                                    <button className="btn btn-primary">
-                                        View Button
-                                    </button>
-                                </td>
-                                </tr>
-                      
-                        ))}
-                   
+                    {/* Display all the forms that were submitted */}
+                    {forms.map((form) => (
+                        <tr className="d-flex " key={form._id}>
+                            <td className="flex-fill">{form._id}</td>
+                            <td className="flex-fill">{form.form_name}</td>
+                            <td className="flex-fill">15</td>
+                            <td>
+                                <Link
+                                    to={`/submit/${form._id}`}
+                                    className="btn btn-primary"
+                                >
+                                    View
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

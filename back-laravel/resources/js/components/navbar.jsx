@@ -36,6 +36,11 @@ const Navbar = () => {
                   Form Builder Page
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/submit">
+                  Form Submit Page
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
