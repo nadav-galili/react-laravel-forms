@@ -20,7 +20,6 @@ function App() {
                 <main style={style}>
                     <section>
                         <Switch>
-
                             <Route path="/form-builder" component={Wizard} />
                             <Route path="/submit/:id" component={FormSubmit} />
                             <Route path="/" exact component={DataTable} />

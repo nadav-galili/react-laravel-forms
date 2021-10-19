@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../common/header";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-// import TextError from "../common/textError";
+import * as Yup from "yup"; 
 import FormikControl from "../common/FormikControl";
 
 const initialValues = {
@@ -29,6 +28,7 @@ const FormSubmit = () => {
     return (
         <div className="container">
             <Header titleText="Forms Submit Page" />
+            <h3>Form Name : test form 1</h3>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

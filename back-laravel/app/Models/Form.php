@@ -16,4 +16,8 @@ class Form extends Model
     public function questions(){
         return $this->hasMany(Question::class);
     }
+    public function submitted(){
+        return $this->hasMany(SubmittedForm::class);
+    }
+    
 }

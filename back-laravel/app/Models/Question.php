@@ -16,5 +16,9 @@ class Question extends Model
     public function form(){
         return $this->belongsTo(Form::class);
     }
+    
+    public function submitted_forms(){
+        return $this->belongsToMany(SubmittedForm::class);
+    }
 
 }
