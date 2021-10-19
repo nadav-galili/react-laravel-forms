@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SubmittedFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ use App\Http\Controllers\QuestionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/addsubmitted', [SubmittedFormController::class, 'addSubmitted']);
+Route::get('/addquestion', [SubmittedFormController::class,'addquestion']);
 
 
 
@@ -27,11 +31,13 @@ Route::get('/forms/{id}', [FormController::class, 'formById']);
 
 //create a new questions instance with form id as parameter
 Route::post('/savequestions/{id}', [QuestionController::class, 'savequestions']);
-//get questions by formid
-Route::get('/questionsByForm/{formId}',[QuestionController::class, 'questionsByForm']);
+// //get questions by formid
+// Route::get('/questionsByForm/{formId}',[QuestionController::class, 'questionsByForm']);
 //get all questions/savequestions
 Route::get('/questions',[QuestionController::class, 'questions'] );
 
+
+Route::post('/submitted-forms/{formId}', [SubmittedFormController::class, 'saveSubmitted']);
 Route::get('/', function () {
     return view('welcome');
 });

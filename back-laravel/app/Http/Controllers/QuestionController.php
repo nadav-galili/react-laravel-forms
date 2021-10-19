@@ -27,8 +27,7 @@ class QuestionController extends Controller
         $question->inputType=$request->input('inputType');
         $form->questions()->save($question);
         return $form;
-        // $question->save();
-        // return $question->toJson();
+       
        
     }
 }
