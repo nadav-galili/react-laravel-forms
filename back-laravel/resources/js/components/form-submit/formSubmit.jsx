@@ -1,71 +1,86 @@
 import React from "react";
 import Header from "../common/header";
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import TextError from "../common/textError";
+import FormikControl from "../common/FormikControl";
 
-const initialValues={
-    question_1:'',
-    question_2:''
-}
+const initialValues = {
+    // question_1: "",
+    text: "",
+    email: "",
+    tel: "",
+    number: "",
+    birthDate: null,
+};
 
-const onSubmit=values=>{
+const onSubmit = (values) => {
     console.log(values);
-}
+};
 
-// const validate=values=>{
-//     let errors={}
-//     if(!values.question_1){
-//         errors.question_1="Required"
-//     }
-//     if (!values.question_2){
-//         errors.question_2='Required'
-//     }
-//     return errors;
-// }
-
-const validationSchema=Yup.object({
-    question_1:Yup.string().required('Required'), 
-    question_2:Yup.string().required('Required'), 
-
-})
+const validationSchema = Yup.object({
+    text: Yup.string().required("Required"),
+    email: Yup.string().required("Required"),
+    tel: Yup.string().required("Required"),
+    number: Yup.number().required("Required"),
+    birthDate: Yup.date().required("Required").nullable(),
+});
 const FormSubmit = () => {
-    const formik = useFormik({
-        initialValues, onSubmit, validationSchema
-     });
-
     return (
         <div className="container">
             <Header titleText="Forms Submit Page" />
-            <div className="">
-                <form action="" onSubmit={formik.handleSubmit}>
-                   <div className="form-control">
-                   <label htmlFor="Question_1"> question 1</label>
-                    <input
-                        type="question 1 type"
-                        id="Question_1"
-                        name="question_1"
-                        onChange={formik.handleChange}
-                        value={formik.values.question_1}
-                        onBlur={formik.handleBlur}
-                    />
-                    {formik.touched.question_1 && formik.errors.question_1?<div className="error">{formik.errors.question_1}</div>:null}
-                   </div>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
+                validateOnMount
+            >
+                {(formik) => {
+                    return (
+                        <Form className="d-flex flex-column">
+                            <FormikControl
+                                control="input"
+                                type="text"
+                                label="Text label"
+                                name="text"
+                            
+                            />
+                            <FormikControl
+                                control="input"
+                                type="email"
+                                label="Email label"
+                                name="email"
+                              
+                            />
+                            <FormikControl
+                                control="input"
+                                type="tel"
+                                label="Tel label"
+                                name="tel"
+                            />
+                            <FormikControl
+                                control="input"
+                                type="number"
+                                label="Number label"
+                                name="number"
+                            />
+                            <FormikControl
+                                control="date"
+                                label="pick a date"
+                                name="birthDate"
+                            />
 
-                 <div className="form-control">
-                 <label htmlFor="Question_2"> question 2</label>
-                    <input
-                        type=" question 2 type"
-                        id="Question_2"
-                        name="question_2"
-                        onChange={formik.handleChange}
-                        value={formik.values.question_2}
-                        onBlur={formik.handleBlur}
-                    />
-                           {formik.touched.question_2 && formik.errors.question_2?<div className="error">{formik.errors.question_2}</div>:null}
-                 </div>
-                    <button>submit</button>
-                </form>
-            </div>
+                            <button
+                                type="submit"
+                                className="btn btn-primary mt-4 col-lg-2 col-4"
+                                disabled={!formik.isValid}
+                            >
+                                submit
+                            </button>
+                        </Form>
+                    );
+                }}
+            </Formik>
         </div>
     );
 };
