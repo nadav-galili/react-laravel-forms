@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import Navbar from "./components/navbar";
 import DataTable from "./components/form-list/dataTable";
-
 import { Switch, Route } from "react-router-dom";
 import Wizard from "./components/wizardBuilder/wizard";
 // 
