@@ -20,8 +20,9 @@ class FormController extends Controller
         return $form->_id;
     }
     
-    public function form(Request $request){
-
-return $request;
+    public function formById($id){
+        $form=Form::all()->where('_id', $id);
+        $form_name=$form->pluck('form_name');
+        return $form_name;
     }
 }

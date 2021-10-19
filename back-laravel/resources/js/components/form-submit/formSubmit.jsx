@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../common/header";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup"; 
+import * as Yup from "yup";
 import FormikControl from "../common/FormikControl";
+// import questionService from "../../../services/questionService";
+import axios from "axios";
 
 const initialValues = {
     // question_1: "",
-    text: "",
-    email: "",
-    tel: "",
-    number: "",
-    birthDate: null,
+    // text: "",
+    // email: "",
+ 
+    
 };
 
 const onSubmit = (values) => {
@@ -24,11 +25,36 @@ const validationSchema = Yup.object({
     number: Yup.number().required("Required"),
     birthDate: Yup.date().required("Required").nullable(),
 });
-const FormSubmit = () => {
+const FormSubmit = (props) => {
+
+    const [formName, setFormName]=useState("");
+    const [formQuestions, setFormQuestions]=useState([]);
+    useEffect(()=>{
+        const getFormDetails=async ()=>{
+            let formId=props.match.params.id
+            let questions=await axios.get(`/questionsByForm/${formId}`).then(
+                (response)=>{
+                    let questions=Object.entries(response.data)
+                    setFormQuestions(questions);
+                    console.log(questions,'ds');
+                 
+                }
+            )
+            let formName=await axios.get(`/forms/${formId}`).then(
+                response=>{
+                    console.log(response.data, "name");
+                    setFormName(response.data);
+                }
+            )
+        };
+        getFormDetails();
+    }, [])
+
+    
     return (
         <div className="container">
             <Header titleText="Forms Submit Page" />
-            <h3>Form Name : test form 1</h3>
+            <h3>Form Name : <span className="text-primary">{formName}</span></h3>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -38,37 +64,39 @@ const FormSubmit = () => {
                 {(formik) => {
                     return (
                         <Form className="d-flex flex-column">
-                            <FormikControl
-                                control="input"
-                                type="text"
-                                label="Text label"
-                                name="text"
+                         {formQuestions.length>1&&(
+                           formQuestions.map(question=>(
+                               <FormikControl
+                               control="input"
+                               type={question[1].inputType}
+                                label={question[1].fieldLabel}
+                               name={question[1].inputName}
+                               key={question[1]._id}
+                           /> 
+                           ))
+                         )}
+                     {/* {
+                         questionsarr?questionsarr.map(q=>(
+                          
+                         )):null
+                     } */}
+                     
+                        
+                        
+                            {/* {formQuestions && (
+                                formQuestions.map((question)=>(
+                                    <FormikControl
+                                    control="input"
+                                    type="text"
+                                    label={question.fieldLabel}
+                                    name="text"
+                                />       
+                                ))
+                            )} */}
                             
-                            />
-                            <FormikControl
-                                control="input"
-                                type="email"
-                                label="Email label"
-                                name="email"
-                              
-                            />
-                            <FormikControl
-                                control="input"
-                                type="tel"
-                                label="Tel label"
-                                name="tel"
-                            />
-                            <FormikControl
-                                control="input"
-                                type="number"
-                                label="Number label"
-                                name="number"
-                            />
-                            <FormikControl
-                                control="date"
-                                label="pick a date"
-                                name="birthDate"
-                            />
+                      
+
+                        
 
                             <button
                                 type="submit"

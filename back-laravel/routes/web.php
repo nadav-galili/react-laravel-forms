@@ -32,7 +32,7 @@ Route::get('/forms/{id}', [FormController::class, 'formById']);
 //create a new questions instance with form id as parameter
 Route::post('/savequestions/{id}', [QuestionController::class, 'savequestions']);
 // //get questions by formid
-// Route::get('/questionsByForm/{formId}',[QuestionController::class, 'questionsByForm']);
+ Route::get('/questionsByForm/{formId}',[QuestionController::class, 'questionsByForm']);
 //get all questions/savequestions
 Route::get('/questions',[QuestionController::class, 'questions'] );
 
