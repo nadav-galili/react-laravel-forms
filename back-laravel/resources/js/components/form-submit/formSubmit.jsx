@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../common/header";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import TextError from "../common/textError";
+// import TextError from "../common/textError";
 import FormikControl from "../common/FormikControl";
 
 const initialValues = {
@@ -21,7 +21,7 @@ const onSubmit = (values) => {
 const validationSchema = Yup.object({
     text: Yup.string().required("Required"),
     email: Yup.string().required("Required"),
-    tel: Yup.string().required("Required"),
+    tel: Yup.number().required("Required"),
     number: Yup.number().required("Required"),
     birthDate: Yup.date().required("Required").nullable(),
 });
@@ -72,7 +72,7 @@ const FormSubmit = () => {
 
                             <button
                                 type="submit"
-                                className="btn btn-primary mt-4 col-lg-2 col-4"
+                                className="btn btn-primary mt-4 col-lg-1 col-4"
                                 disabled={!formik.isValid}
                             >
                                 submit
