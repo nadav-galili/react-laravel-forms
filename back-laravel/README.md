@@ -20,14 +20,8 @@
 * sweetalert2
 * yup
 
+## Run
+To build the code and run the app please type:
 
-
-## install
-please run npm install to load node modules
-#### [npm]
-```
-npm install
-```
-### Run
-* to run the app -  php artisan serve
+npm i && npm run serve && npm run watch
 ## Thank you
