@@ -12,7 +12,11 @@ class SubmittedFormController extends Controller
 
 
     public function addSubmitted(Request $request){   
-
+     //validate user input
+    //  $this->validate($request,
+    //  ['questions'=>'required|string',
+    // 'answers'=>'required|string',
+    // ]);
         //getting the no of times the form was
         // submitted and increment by 1
         $form_id=$request->form_id;
@@ -25,9 +29,9 @@ class SubmittedFormController extends Controller
         $submitted=new SubmittedForm();
         $submitted->form_id=$form_id;
         //get the questions
-        $submitted->questions=$request->questions;
+        $submitted->questions=$request->input('questions');
         //get answers
-        $submitted->answers=$request->answers;
+        $submitted->answers=$request->input('answers');
         $submitted->save();
 
         return  $submitted;

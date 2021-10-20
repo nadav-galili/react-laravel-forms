@@ -19,6 +19,14 @@ class QuestionController extends Controller
     }
 
     public function savequestions(Request $request, $id){
+         //validate user input
+         $this->validate($request,
+         ['questionNumber'=>'required|integer',
+        'fieldLabel'=>'required|string|min:2',
+        'inputName'=>'required|string|min:2',
+        'inputType'=>'required|string|min:2',
+        ]);
+         
         $form=Form::find($id);
         $question=new Question();
         $question->questionNumber=$request->input('questionNumber');

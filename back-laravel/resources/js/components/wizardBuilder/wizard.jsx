@@ -6,7 +6,7 @@ import MyInput from "../common/myInput";
 import Select from "../common/select";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+
 
 // array of input types
 const types = [
@@ -29,7 +29,7 @@ const Wizard = () => {
     const [formName, setFormName] = useState({});
     const [errors, setErrors] = useState({});
     const [validateSubmit, setValidateSubmit] = useState(false);
-    const [formId, setFormId] = useState("");
+
 
     //create schema to validate user input
     let schema = {
@@ -108,7 +108,7 @@ const Wizard = () => {
     async function submitForm(event) {
         event.preventDefault();
         //check if the user entered form name min 2 chars
-        if (!formName.form_name || formName.form_name.length < 2)
+        if (!formName.form_name || formName.form_name.length < 2) {
             // alert("Please enter form name min 2 chars");
             Swal.fire({
                 icon: "error",
@@ -116,6 +116,10 @@ const Wizard = () => {
                 text: "Please enter form name min 2 chars",
                 footer: "",
             });
+                //if user does not pass validation on form name,return;
+            return;
+        }
+
         //get user data for the last question
         let questionData = {
             questionNumber: questionNum,
@@ -141,7 +145,6 @@ const Wizard = () => {
                         axios.post(`/savequestions/${response.data}`, q)
                     );
                 });
-             
                 //navigate to home directory
                 window.location = "/";
             } else {
