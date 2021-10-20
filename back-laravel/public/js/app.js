@@ -2473,7 +2473,7 @@ var DataTable = function DataTable() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
               children: form.form_name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "15"
+              children: form.times_submitted
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
                 to: "/submit/".concat(form._id),
@@ -2648,7 +2648,7 @@ var SubmitForms = function SubmitForms(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_common_header__WEBPACK_IMPORTED_MODULE_3__["default"], {
       titleText: formName
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
-      onsubmit: submitForm,
+      onSubmit: submitForm,
       children: [formQuestions.map(function (question) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "form-group col-4",
@@ -3022,13 +3022,18 @@ var Wizard = function Wizard() {
                   formDetails.shift(); //save the form name in the DB to get the form Id
 
                   axios__WEBPACK_IMPORTED_MODULE_7___default().post("/saveform", formName).then(function (response) {
-                    //map through the form data and save in the DB with the form id as parameter
+                    console.log(response, "op");
+
+                    if (!response.data) {
+                      alert('oooo');
+                    } //map through the form data and save in the DB with the form id as parameter
+
+
                     formDetails.map(function (q) {
                       return axios__WEBPACK_IMPORTED_MODULE_7___default().post("/savequestions/".concat(response.data), q);
                     });
                   }); //navigate to home directory
-
-                  window.location = "/";
+                  // window.location = "/";
                 } else {
                   sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
                     icon: "error",
@@ -3174,7 +3179,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 
+
+axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(null, function (error) {
+  var expectedError = error.response && error.response.status >= 403;
+  if (expectedError) (0,react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast)("an unexpected error occurd");
+  return Promise.reject(error);
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   get: (axios__WEBPACK_IMPORTED_MODULE_0___default().get),
   post: (axios__WEBPACK_IMPORTED_MODULE_0___default().post),

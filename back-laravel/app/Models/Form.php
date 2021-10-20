@@ -9,7 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Form extends Model
 {
     use HasFactory;
-    protected $fillable=['form_name','submitions' ];
+    protected $fillable=['form_name','times_submitted' ];
 
     protected $table='forms';
     

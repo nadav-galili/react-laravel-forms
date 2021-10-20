@@ -136,6 +136,8 @@ const Wizard = () => {
 
                 //save the form name in the DB to get the form Id
                 axios.post("/saveform", formName).then((response) => {
+                    console.log(response, "op");
+                    if(!response.data){alert('oooo')}
                     //map through the form data and save in the DB with the form id as parameter
                     formDetails.map((q) =>
                         axios.post(`/savequestions/${response.data}`, q)
@@ -143,7 +145,7 @@ const Wizard = () => {
                 });
              
                 //navigate to home directory
-                window.location = "/";
+                // window.location = "/";
             } else {
                 Swal.fire({
                     icon: "error",

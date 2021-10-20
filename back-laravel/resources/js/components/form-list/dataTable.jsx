@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const DataTable = () => {
     const [forms, setForms] = useState([]);
+
     useEffect(() => {
         const getForms = async () => {
             let forms = await formService.getAllForms();
@@ -33,7 +34,7 @@ const DataTable = () => {
                         <tr  key={form._id}>
                             <td >{form._id}</td>
                             <td >{form.form_name}</td>
-                            <td >15</td>
+                            <td >{form.times_submitted}</td>
                             <td>
                                 <Link
                                     to={`/submit/${form._id}`}

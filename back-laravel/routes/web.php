@@ -18,8 +18,7 @@ use App\Http\Controllers\SubmittedFormController;
 //save a new form the user answered
 Route::post('/addsubmitted', [SubmittedFormController::class, 'addSubmitted']);
 
-//count the forms that were submitted
-Route::get('/countforms/{formid}', [SubmittedFormController::class, 'countSubmitted']);
+
 //get all the forms
 Route::get('/forms', [FormController::class, 'forms']);
 //create a new form
@@ -36,7 +35,6 @@ Route::post('/savequestions/{id}', [QuestionController::class, 'savequestions'])
 Route::get('/questions',[QuestionController::class, 'questions'] );
 
 
-// Route::post('/submitted-forms/{formId}', [SubmittedFormController::class, 'saveSubmitted']);
 Route::get('/', function () {
     return view('welcome');
 });

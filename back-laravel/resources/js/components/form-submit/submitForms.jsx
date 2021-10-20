@@ -68,7 +68,7 @@ const SubmitForms = (props) => {
     return (
         <div className="container">
             <Header titleText={formName} />
-            <form onsubmit={submitForm}>
+            <form onSubmit={submitForm}>
                 {formQuestions.map((question) => (
                     <div className="form-group col-4" key={question[1]._id}>
                         <Label

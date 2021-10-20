@@ -11,25 +11,31 @@ class SubmittedFormController extends Controller
 
 
 
-    public function addSubmitted(Request $request){
-        //get form id
+    public function addSubmitted(Request $request){   
+
+        //getting the no of times the form was
+        // submitted and increment by 1
         $form_id=$request->form_id;
-        //q ids
-        $form_questions=$request->questions;
-        //get answers
-        $answers=$request->answers;
+        $form=Form::find($form_id);
+        $form->times_submitted++;
+        $form->save();
+        
+
         
         $submitted=new SubmittedForm();
-        $submitted->form_id= $form_id;
-        $submitted->questions=$form_questions;
-        $submitted->answers=$answers;
+        $submitted->form_id=$form_id;
+        //get the questions
+        $submitted->questions=$request->questions;
+        //get answers
+        $submitted->answers=$request->answers;
         $submitted->save();
-        return $submitted;
+
+        return  $submitted;
  
     }
 
     public function countSubmitted($form_id){
-        
+        //count the form that were submitted to this form id
         $form=SubmittedForm::All()->where('form_id',$form_id )->count();
         return $form;
     }
