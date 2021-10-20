@@ -14,6 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         // '*'
         //
-        '/saveform', '/savequestions/*','/createform', '/submitted-forms/*','/addsubmitted'
+        '/saveform', '/savequestions/*','/createform', '/submitted-forms/*','/addsubmitted','/countforms/*'
     ];
 }
