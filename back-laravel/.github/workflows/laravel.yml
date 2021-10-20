@@ -5,7 +5,8 @@ on:
         branches:
         -main
 
-jobs:create-deployment-artifacts:
+jobs: 
+create-deployment-artifacts:
 name: Create deployment artifacts
   runs-on: ubunto-latest
   steps:
