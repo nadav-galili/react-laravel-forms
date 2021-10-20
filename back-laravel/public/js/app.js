@@ -2450,18 +2450,13 @@ var DataTable = function DataTable() {
       className: "table",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-          className: "d ",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-            className: "fl",
             children: "Form Id "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-            className: "fle",
             children: "Form Name"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-            className: "fle",
             children: "# Submissions"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-            className: "fl",
             children: "Submit Page"
           })]
         })
@@ -2703,7 +2698,7 @@ var Navbar = function Navbar() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-brand text-primary",
         to: "/",
-        children: "React-Laravel App"
+        children: "React-Laravel APP"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: "navbar-toggler",
         type: "button",
@@ -3178,7 +3173,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(null, function (error) {
-  var expectedError = error.response && error.response.status >= 403;
+  var expectedError = error.response && error.response.status == 422;
   if (expectedError) alert("Form validation is wrong,please fill the form correctlly");
   return Promise.reject(error);
 });

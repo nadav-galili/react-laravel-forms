@@ -20,21 +20,21 @@ const DataTable = () => {
             <Header titleText="Forms List Page" />
             <table className="table">
                 <thead>
-                    <tr className="d ">
-                        <th className="fl">Form Id </th>
-                        <th className="fle">Form Name</th>
-                        <th className="fle"># Submissions</th>
-                        <th className="fl">Submit Page</th>
+                    <tr>
+                        <th>Form Id </th>
+                        <th>Form Name</th>
+                        <th># Submissions</th>
+                        <th>Submit Page</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {/* Display all the forms that were submitted */}
                     {forms.map((form) => (
-                        <tr  key={form._id}>
-                            <td >{form._id}</td>
-                            <td >{form.form_name}</td>
-                            <td >{form.times_submitted}</td>
+                        <tr key={form._id}>
+                            <td>{form._id}</td>
+                            <td>{form.form_name}</td>
+                            <td>{form.times_submitted}</td>
                             <td>
                                 <Link
                                     to={`/submit/${form._id}`}

@@ -3,25 +3,31 @@
 
 ## Laravel React Form App By Nadav Galili
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirments -
+* PHP >=8.0
+* mongodb php extension
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
+## DataBase-MongoDB
+## Dependencies
+
+* bootstrap
+* jquery
+* popper.js
+* react-dom
+* axios
+* joi-browser
+* react-router-dom
+* sweetalert2
+* yup
 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-## Laravel Sponsors
-
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-## Security Vulnerabilities
-
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## install
+please run npm install to load node modules
+#### [npm]
+```
+npm install
+```
+### Run
+* to run the app -  php artisan serve
+## Thank you
