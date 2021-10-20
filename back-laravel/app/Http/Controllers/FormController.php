@@ -15,10 +15,10 @@ class FormController extends Controller
     }
 
     public function saveform(Request $request){
+        //validate user input
         $this->validate($request,
-        ['form_name'=>'required|min:4']);
-        
-        
+        ['form_name'=>'required|string|min:2']);
+    
         $form=new Form();
         $form->form_name=$request->input('form_name');
         $form->times_submitted=0;

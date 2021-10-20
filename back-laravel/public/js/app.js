@@ -3022,18 +3022,13 @@ var Wizard = function Wizard() {
                   formDetails.shift(); //save the form name in the DB to get the form Id
 
                   axios__WEBPACK_IMPORTED_MODULE_7___default().post("/saveform", formName).then(function (response) {
-                    console.log(response, "op");
-
-                    if (!response.data) {
-                      alert('oooo');
-                    } //map through the form data and save in the DB with the form id as parameter
-
-
+                    //map through the form data and save in the DB with the form id as parameter
                     formDetails.map(function (q) {
                       return axios__WEBPACK_IMPORTED_MODULE_7___default().post("/savequestions/".concat(response.data), q);
                     });
                   }); //navigate to home directory
-                  // window.location = "/";
+
+                  window.location = "/";
                 } else {
                   sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
                     icon: "error",
@@ -3179,12 +3174,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-
 
 axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(null, function (error) {
   var expectedError = error.response && error.response.status >= 403;
-  if (expectedError) (0,react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast)("an unexpected error occurd");
+  if (expectedError) alert("Form validation is wrong,please fill the form correctlly");
   return Promise.reject(error);
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
