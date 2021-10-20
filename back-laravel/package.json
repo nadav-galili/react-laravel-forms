@@ -25,11 +25,14 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@hookform/resolvers": "^2.8.2",
         "formik": "^2.2.9",
         "joi-browser": "^13.4.0",
         "react-datepicker": "^4.2.1",
+        "react-hook-form": "^7.17.5",
         "react-router-dom": "^5.3.0",
         "react-toastify": "^8.0.3",
-        "sweetalert2": "^11.1.9"
+        "sweetalert2": "^11.1.9",
+        "yup": "^0.32.11"
     }
 }

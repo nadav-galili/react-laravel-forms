@@ -11,28 +11,43 @@ class SubmittedFormController extends Controller
 
 
 
-    public function addSubmitted(){
-        $questions=[
-            ["question_id"=>"11111"],
-            ["question_id"=>"22222"],
-            ["question_id"=>"33333"],
+    public function addSubmitted(Request $request){
+        //get form id
+        $form_id=$request->form_id;
+        //q ids
+        $form_questions=$request->questions;
+        //get answers
+        $answers=$request->answers;
+        
+        $submitted=new SubmittedForm();
+        $submitted->form_id= $form_id;
+        $submitted->questions=$form_questions;
+        $submitted->answers=$answers;
+        $submitted->save();
+        return $submitted;
+        
+        
+        // $questions=[
+        //     ["question_id"=>"11111"],
+        //     ["question_id"=>"22222"],
+        //     ["question_id"=>"33333"],
        
            
-        ];
-        $submitteds=[
-            ["answer"=>"pizza"],
-            ["answer"=>"burger"],
-            ["answer"=>"friez"],
-        ];
+        // ];
+        // $submitteds=[
+        //     ["answer"=>"pizza"],
+        //     ["answer"=>"burger"],
+        //     ["answer"=>"friez"],
+        // ];
      
         
     
-        $sub=new SubmittedForm();
-        $sub->questions=$questions;
-        $sub->answers=$submitteds;
-        $sub->form_id=999999;
-        $sub->save();
-        return $sub;
+        // $sub=new SubmittedForm();
+        // $sub->questions=$questions;
+        // $sub->answers=$submitteds;
+        // $sub->form_id=999999;
+        // $sub->save();
+        // return $sub;
     }
 
     public function addquestion(){
@@ -48,10 +63,7 @@ class SubmittedFormController extends Controller
         $submitedid=[11111,22222];
         
         $question->submitted_forms()->attach($submitedid);
-        return 'd';
-        
-        
-        
+        return 'd'; 
     }
 
 
@@ -63,10 +75,7 @@ class SubmittedFormController extends Controller
         $questions=$form->questions;
         $submitted=new SubmittedForm();
         $submitted->answers=$request->input('answers');
-        // $form->submittedForms()->save($submitted);
         
-        // $submitted->questions()->save($questions);
-        // $form->submitted_forms()->save($submitted);
         return $form;
       
       

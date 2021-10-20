@@ -6,7 +6,7 @@ export function saveQuestion(question, formId){
 }
 
 export function getQuestionsByFormId(formId){
-    return http.get(`questionsByForm/${formId}`);
+    return http.get(`/questionsByForm/${formId}`);
 }
 
 export default {

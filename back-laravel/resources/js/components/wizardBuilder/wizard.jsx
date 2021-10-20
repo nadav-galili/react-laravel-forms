@@ -141,16 +141,7 @@ const Wizard = () => {
                         axios.post(`/savequestions/${response.data}`, q)
                     );
                 });
-                //display toastify banner
-                toast.success("🦄 The Form Was Submitted Successfully!", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+             
                 //navigate to home directory
                 window.location = "/";
             } else {

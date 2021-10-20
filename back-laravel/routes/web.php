@@ -16,7 +16,7 @@ use App\Http\Controllers\SubmittedFormController;
 |
 */
 
-Route::get('/addsubmitted', [SubmittedFormController::class, 'addSubmitted']);
+Route::post('/addsubmitted', [SubmittedFormController::class, 'addSubmitted']);
 Route::get('/addquestion', [SubmittedFormController::class,'addquestion']);
 
 
