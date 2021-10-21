@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import {useForm} from "react-hook-form";
-// import {yupResolver} from "@hookform/resolvers/yup";
-// import * as yup from "yup";
+
 import Joi from "joi-browser";
 import Header from "../common/header";
 import Label from "../common/label";
@@ -15,8 +14,6 @@ const SubmitForms = (props) => {
     //the answers the user enters on the form
     const [data, setData] = useState({});
 
-    // const [errors, setErrors] = useState({});
-    // const [schema, setSchema] = useState({});
     
     //form questions in an object to save to db
     const [questions, setQuestions] = useState({});

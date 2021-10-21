@@ -2534,8 +2534,6 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import {useForm} from "react-hook-form";
-// import {yupResolver} from "@hookform/resolvers/yup";
-// import * as yup from "yup";
 
 
 
@@ -2561,9 +2559,7 @@ var SubmitForms = function SubmitForms(props) {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
       _useState6 = _slicedToArray(_useState5, 2),
       data = _useState6[0],
-      setData = _useState6[1]; // const [errors, setErrors] = useState({});
-  // const [schema, setSchema] = useState({});
-  //form questions in an object to save to db
+      setData = _useState6[1]; //form questions in an object to save to db
 
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
