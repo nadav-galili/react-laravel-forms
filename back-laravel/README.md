@@ -45,13 +45,11 @@ the form name to the db and gets back the form id from the db.
 * after the submit , we run window location to get back to forms list.
 
 * Forms Submit Page-Make an API call to db to get all the questions that have this form's id as a foreign key and map all the questions to display each question.
-* when the user click the submit button, collect all the answers (from the component state) and store all the data in a "form submitted model" in the db
+* when the user click the submit button,validate the fields & collect all the answers (from the component state) and store all the data in a "submitted form model" in the db
 where you can get all the form details in this model ( form id as a foreign key, 
 questions id's and the answer the user enterd)
 also, each time a form is submitted , the "number submitted" property
 in the original form is incremented by one.
-
-
 
 
 
