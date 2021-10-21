@@ -5,7 +5,7 @@
 
 ![Forms List](https://github.com/nadav-galili/react-laravel-forms/blob/main/back-laravel/public/images/laravel.JPG)
 ![Forms Builder](https://github.com/nadav-galili/react-laravel-forms/blob/main/back-laravel/public/images/laravel%202.JPG)
-![Forms Submit](https://github.com/nadav-galili/react-laravel-forms/blob/main/back-laravel/public/images/laravel.JPG)
+![Forms Submit](https://github.com/nadav-galili/react-laravel-forms/blob/main/back-laravel/public/images/laravel%203.JPG)
 ## Requirments -
 * PHP >=8.0
 * mongodb php extension

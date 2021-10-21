@@ -140,9 +140,11 @@ const Wizard = () => {
 
                 //save the form name in the DB to get the form Id
                 axios.post("/saveform", formName).then((response) => {
+                  
                     //map through the form data and save in the DB with the form id as parameter
+                   
                     formDetails.map((q) =>
-                        axios.post(`/savequestions/${response.data}`, q)
+                         axios.post(`/savequestions/${response.data}`, q)
                     );
                 });
                 //navigate to home directory

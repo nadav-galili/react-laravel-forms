@@ -28,6 +28,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@hookform/error-message": "^2.0.0",
         "@hookform/resolvers": "^2.8.2",
         "formik": "^2.2.9",
         "joi-browser": "^13.4.0",
